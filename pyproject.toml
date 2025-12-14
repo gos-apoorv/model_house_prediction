@@ -1,0 +1,73 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ml_house_prediction"
+authors = [
+    {name = "gos-apoorv", email = "gos-apoorv@gmail.com"},
+]
+description = "Repo for House prediction in California"
+readme = "README.md"
+requires-python = ">=3.10"
+keywords = ["data", "gos-apoorv", "ml", "prediction"]
+dependencies = ["structlog"]
+
+
+[project.optional-dependencies]
+
+[project.urls]
+repository = "https://github.com/gos-apoorv/ml-house-prediction"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["src*"]
+
+[tool.black]
+line-length = 88
+target-version = ["py310"]
+include = '\.pyi?$'
+exclude = '''
+(
+  /(
+      \.eggs         # exclude a few common directories in the
+    | \.git          # root of the project
+    | \.hg
+    | \.mypy_cache
+    | \.tox
+    | \.venv
+    | _build
+    | buck-out
+    | build
+    | dist
+  )/
+  | foo.py           # also separately exclude a file named foo.py in
+                     # the root of the project
+)
+'''
+
+[tool.isort]
+profile = "black"
+line_length = 88
+
+[tool.mypy]
+ignore_missing_imports = true
+explicit_package_bases = true
+exclude = ["venv", "tests", ".venv", ".git", ".tox", 
+		".mypy_cache", ".eggs", "build", "dist"]
+
+[tool.pytest.ini_options]
+testpaths = "tests/"
+pythonpath= ["./"]
+addopts = "-xv -p no:cacheprovider --import-mode=importlib"
+filterwarnings = '''
+    ignore::DeprecationWarning
+    '''
+log_cli = true
+log_cli_level = "INFO"
+log_cli_format = "%(asctime)s [%(levelname)8s] %(message)s (%(filename)s:%(lineno)s)"
+log_cli_date_format = "%Y-%m-%d %H:%M:%S"
+markers = '''
+    fsm: finite state machine tests
+    failsafe: failsafe tests
+    '''
