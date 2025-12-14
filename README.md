@@ -17,6 +17,6 @@ https://www.dcc.fc.up.pt/~ltorgo/Regression/cal_housing.html
 
 
 ## Model:
-Notebook for the code can be found here: [prod.ipynb](notebooks/prod.ipynb)
+Notebook used can be found here: [prod.ipynb](notebooks/prod.ipynb)
 
 And once notebook is executed , Model will be generated at path: models/california_housing_model.pkl
